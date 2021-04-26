@@ -1,0 +1,10 @@
+[package]
+name = "game_of_life"
+version = "0.1.0"
+authors = ["Jeffrey Harmon"]
+edition = "2018"
+publish = false
+
+[dependencies]
+rand = "0.6.5"
+terminal_size = "0.1.16"
