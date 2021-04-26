@@ -6,7 +6,7 @@ fn main() {
     let mut size = (16, 16);
 
     if let Some((Width(w), Height(h))) = terminal_size() {
-        size = (w / 2, h);
+        size = (w / 2, h - 1);
     }
 
     let size = size;

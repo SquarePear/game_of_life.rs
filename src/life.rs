@@ -1,4 +1,5 @@
 use rand::Rng;
+use std::io::{stdout, Write};
 
 pub struct Life {
     cells: Vec<Vec<bool>>,
@@ -85,15 +86,25 @@ impl Life {
 
     pub fn print(&self) {
         print!("{}[2J", 27 as char);
+        print!("{}[H", 27 as char);
 
-        for y in 0..self.cells.len() {
-            let res: Vec<&str> = self.cells[y]
-                .clone()
-                .into_iter()
-                .map(|x| if x { "#" } else { " " })
-                .collect();
+        if let Err(_err) = stdout().flush() {}
 
-            println!("{}", res.join(" "));
-        }
+        let res: Vec<String> = self
+            .cells
+            .clone()
+            .into_iter()
+            .map(|y| {
+                let res: Vec<&str> = y
+                    .clone()
+                    .into_iter()
+                    .map(|x| if x { "#" } else { " " })
+                    .collect();
+
+                res.join(" ")
+            })
+            .collect();
+
+        print!("{}\n", res.join("\n"));
     }
 }
